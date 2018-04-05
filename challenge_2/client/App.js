@@ -14,11 +14,12 @@ class App extends React.Component {
     }
   }
 
-  updatePurchaseInfo(data) {
+  updatePurchaseInfo(key, value) {
     const updatedPurchaseInfo = this.state.purchaseInfo;
-    for (let key in data) {
-      updatedPurchaseInfo[key] = data[key];
-    }
+    updatedPurchaseInfo[key] = value;
+    // for (let key in data) {
+    //   updatedPurchaseInfo[key] = data[key];
+    // }
     this.setState({
       purchaseInfo: updatedPurchaseInfo
     })

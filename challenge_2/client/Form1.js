@@ -11,22 +11,14 @@ class Form1 extends React.Component {
     }
   }
 
-  getFormData(key, value) {
-    const newFormData = this.state.formData;
-    newFormData[key] = value;
-    this.setState({
-      formData: newFormData
-    })
-  }
-
   render() {
     return (
       <div>
         <h3>Form 1</h3>
-        <Input fieldName={'name'} getFormData={this.getFormData.bind(this)} />
-        <Input fieldName={'email'} getFormData={this.getFormData.bind(this)} />
-        <Input fieldName={'password'} />
-        <button onClick={() => {props.changeForm()}}>Next</button>
+        <Input fieldName={'name'}  updatePurchaseInfo={this.props.updatePurchaseInfo}/>
+        <Input fieldName={'email'}  updatePurchaseInfo={this.props.updatePurchaseInfo} />
+        <Input fieldName={'password'} updatePurchaseInfo={this.props.updatePurchaseInfo} />
+        <button onClick={() => {this.props.changeForm()}}>Next</button>
       </div>
     )
   }
