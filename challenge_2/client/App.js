@@ -14,21 +14,14 @@ class App extends React.Component {
     }
   }
 
-  // getNextForm() {
-  //   this.savePurchase(this.purchaseInfo)
-  //   this.setState({
-  //     checkoutStage: this.state.checkoutStage + 1
-  //   })
-  // }
-  componentDidMount() {
-    this.savePurchase(this.purchaseInfo)
-  }
-
   updatePurchaseInfo(data) {
     const updatedPurchaseInfo = this.state.purchaseInfo;
     for (let key in data) {
       updatedPurchaseInfo[key] = data[key];
     }
+    console.log(updatedPurchaseInfo);
+    this.savePurchase(updatedPurchaseInfo);
+
     this.setState({
       purchaseInfo: updatedPurchaseInfo,
       checkoutStage: this.state.checkoutStage + 1
@@ -38,7 +31,7 @@ class App extends React.Component {
   savePurchase(data) {
     axios.post('/purchases', data)
       .then((res) => {
-        console.log(res);
+        console.log(res.body);
       })
       .catch((err) => {
         console.error(err);
