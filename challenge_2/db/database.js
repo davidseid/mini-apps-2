@@ -8,7 +8,6 @@ db.once('open', function() {
 });
 
 const purchaseSchema = mongoose.Schema({
-  id: Number,
   name: String,
   email: String,
   password: String,

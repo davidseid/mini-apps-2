@@ -2,10 +2,10 @@ import React from 'react';
 
 import Input from './Input.js';
 
-const Form1 = ({updatePurchaseInfo}) => {
+const Form2 = ({updatePurchaseInfo}) => {
   return (
     <div>
-      <h3>Form 1</h3>
+      <h3>Form 2</h3>
       <Input fieldName={'name'} />
       <Input fieldName={'email'} />
       <Input fieldName={'password'} />
@@ -14,4 +14,4 @@ const Form1 = ({updatePurchaseInfo}) => {
   )
 }
 
-export default Form1;
+export default Form2;

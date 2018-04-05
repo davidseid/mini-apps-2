@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Home from './Home.js';
 import Form1 from './Form1.js';
+import Form2 from './Form2.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,14 +14,25 @@ class App extends React.Component {
     }
   }
 
-  getNextForm() {
+  // getNextForm() {
+  //   this.savePurchase(this.purchaseInfo)
+  //   this.setState({
+  //     checkoutStage: this.state.checkoutStage + 1
+  //   })
+  // }
+  componentDidMount() {
     this.savePurchase(this.purchaseInfo)
-    this.setState({
-      checkoutStage: this.state.checkoutStage + 1
-    })
   }
 
-  updatePurchaseInfo() {
+  updatePurchaseInfo(data) {
+    const updatedPurchaseInfo = this.state.purchaseInfo;
+    for (let key in data) {
+      updatedPurchaseInfo[key] = data[key];
+    }
+    this.setState({
+      purchaseInfo: updatedPurchaseInfo,
+      checkoutStage: this.state.checkoutStage + 1
+    })
   }
 
   savePurchase(data) {
@@ -37,14 +49,21 @@ class App extends React.Component {
     if (this.state.checkoutStage === 0) {
       return (
         <div>
-          <Home getNextForm={this.getNextForm.bind(this)} />
+          <Home updatePurchaseInfo={this.updatePurchaseInfo.bind(this)} />
         </div>
       )
     }
     if (this.state.checkoutStage === 1) {
       return (
         <div>
-          <Form1 getNextForm={this.getNextForm.bind(this)} />
+          <Form1 updatePurchaseInfo={this.updatePurchaseInfo.bind(this)} />
+        </div>
+      )
+    }
+    if (this.state.checkoutStage === 2) {
+      return (
+        <div>
+          <Form2 updatePurchaseInfo={this.updatePurchaseInfo.bind(this)} />
         </div>
       )
     }
