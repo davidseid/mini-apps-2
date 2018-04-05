@@ -2,16 +2,35 @@ import React from 'react';
 
 import Input from './Input.js';
 
-const Form1 = ({updatePurchaseInfo}) => {
-  return (
-    <div>
-      <h3>Form 1</h3>
-      <Input fieldName={'name'} />
-      <Input fieldName={'email'} />
-      <Input fieldName={'password'} />
-      <button onClick={() => {updatePurchaseInfo({name: 'David'})}}>Next</button>
-    </div>
-  )
+class Form1 extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      formData: {}
+    }
+  }
+
+  getFormData(key, value) {
+    const newFormData = this.state.formData;
+    newFormData[key] = value;
+    this.setState({
+      formData: newFormData
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <h3>Form 1</h3>
+        <Input fieldName={'name'} getFormData={this.getFormData.bind(this)} />
+        <Input fieldName={'email'} getFormData={this.getFormData.bind(this)} />
+        <Input fieldName={'password'} />
+        <button onClick={() => {props.changeForm()}}>Next</button>
+      </div>
+    )
+  }
+  // ({changeForm, updatePurchaseInfo}) => {
 }
 
 export default Form1;

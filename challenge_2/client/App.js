@@ -19,11 +19,15 @@ class App extends React.Component {
     for (let key in data) {
       updatedPurchaseInfo[key] = data[key];
     }
-    console.log(updatedPurchaseInfo);
-    this.savePurchase(updatedPurchaseInfo);
+    this.setState({
+      purchaseInfo: updatedPurchaseInfo
+    })
+  }
+
+  changeForm() {
+    this.savePurchase(this.state.purchaseInfo);
 
     this.setState({
-      purchaseInfo: updatedPurchaseInfo,
       checkoutStage: this.state.checkoutStage + 1
     })
   }
@@ -42,21 +46,21 @@ class App extends React.Component {
     if (this.state.checkoutStage === 0) {
       return (
         <div>
-          <Home updatePurchaseInfo={this.updatePurchaseInfo.bind(this)} />
+          <Home changeForm={this.changeForm.bind(this)} />
         </div>
       )
     }
     if (this.state.checkoutStage === 1) {
       return (
         <div>
-          <Form1 updatePurchaseInfo={this.updatePurchaseInfo.bind(this)} />
+          <Form1 changeForm={this.changeForm.bind(this)} updatePurchaseInfo={this.updatePurchaseInfo.bind(this)} />
         </div>
       )
     }
     if (this.state.checkoutStage === 2) {
       return (
         <div>
-          <Form2 updatePurchaseInfo={this.updatePurchaseInfo.bind(this)} />
+          <Form2 changeForm={this.changeForm.bind(this)} updatePurchaseInfo={this.updatePurchaseInfo.bind(this)} />
         </div>
       )
     }

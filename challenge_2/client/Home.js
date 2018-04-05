@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Home = ({updatePurchaseInfo}) => {
+const Home = ({changeForm}) => {
   return (
     <div>
-      <button onClick={() => {updatePurchaseInfo()}}>Checkout</button>
+      <button onClick={() => {changeForm()}}>Checkout</button>
     </div>
   )
 }
