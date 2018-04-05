@@ -2,14 +2,16 @@ import React from 'react';
 
 import Input from './Input.js';
 
-const Form2 = ({updatePurchaseInfo}) => {
+const Form2 = ({updatePurchaseInfo, changeForm}) => {
   return (
     <div>
       <h3>Form 2</h3>
-      <Input fieldName={'name'} />
-      <Input fieldName={'email'} />
-      <Input fieldName={'password'} />
-      <button onClick={() => {updatePurchaseInfo({name: 'David'})}}>Next</button>
+      <Input fieldName={'line1'}  updatePurchaseInfo={updatePurchaseInfo}/>
+      <Input fieldName={'line2'}  updatePurchaseInfo={updatePurchaseInfo} />
+      <Input fieldName={'city'} updatePurchaseInfo={updatePurchaseInfo} />
+      <Input fieldName={'state'} updatePurchaseInfo={updatePurchaseInfo} />
+      <Input fieldName={'zip'} updatePurchaseInfo={updatePurchaseInfo} />
+      <button onClick={() => {changeForm()}}>Next</button>
     </div>
   )
 }

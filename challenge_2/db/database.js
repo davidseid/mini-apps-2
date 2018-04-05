@@ -11,20 +11,16 @@ const purchaseSchema = mongoose.Schema({
   name: String,
   email: String,
   password: String,
-  address: {
-    line1: String,
-    line2: String,
-    city: String,
-    state: String,
-    zip: String,
-  },
+  line1: String,
+  line2: String,
+  city: String,
+  state: String,
+  zip: String,
   phone: String,
-  creditcard: {
-    number: String,
-    expiry: String,
-    cvv: String,
-    billzip: String
-  }
+  number: String,
+  expiry: String,
+  cvv: String,
+  billzip: String
 })
 
 const Purchase = mongoose.model('Purchase', purchaseSchema);

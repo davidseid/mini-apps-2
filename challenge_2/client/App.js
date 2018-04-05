@@ -4,6 +4,7 @@ import axios from 'axios';
 import Home from './Home.js';
 import Form1 from './Form1.js';
 import Form2 from './Form2.js';
+import Form3 from './Form3.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,9 +18,6 @@ class App extends React.Component {
   updatePurchaseInfo(key, value) {
     const updatedPurchaseInfo = this.state.purchaseInfo;
     updatedPurchaseInfo[key] = value;
-    // for (let key in data) {
-    //   updatedPurchaseInfo[key] = data[key];
-    // }
     this.setState({
       purchaseInfo: updatedPurchaseInfo
     })
@@ -62,6 +60,13 @@ class App extends React.Component {
       return (
         <div>
           <Form2 changeForm={this.changeForm.bind(this)} updatePurchaseInfo={this.updatePurchaseInfo.bind(this)} />
+        </div>
+      )
+    }
+    if (this.state.checkoutStage === 3) {
+      return (
+        <div>
+          <Form3 changeForm={this.changeForm.bind(this)} updatePurchaseInfo={this.updatePurchaseInfo.bind(this)} />
         </div>
       )
     }
