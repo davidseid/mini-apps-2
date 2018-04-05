@@ -7,17 +7,25 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      checkoutStage: 'home'
     }
   }
 
   render() {
-    return (
-      <div>
-        <Home />
-        <Form1 />
-      </div>
-    )
+    if (this.state.checkoutStage === 'home') {
+      return (
+        <div>
+          <Home />
+        </div>
+      )
+    }
+    if (this.state.checkoutStage === 'form1') {
+      return (
+        <div>
+          <Form1/>
+        </div>
+      )
+    }
   }
 }
 
