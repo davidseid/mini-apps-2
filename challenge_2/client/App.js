@@ -7,22 +7,29 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      checkoutStage: 'home'
+      checkoutStage: 0
     }
   }
 
+  getNextForm() {
+    console.log('clicked');
+    this.setState({
+      checkoutStage: this.state.checkoutStage + 1
+    })
+  }
+
   render() {
-    if (this.state.checkoutStage === 'home') {
+    if (this.state.checkoutStage === 0) {
       return (
         <div>
-          <Home />
+          <Home getNextForm={this.getNextForm.bind(this)} />
         </div>
       )
     }
-    if (this.state.checkoutStage === 'form1') {
+    if (this.state.checkoutStage === 1) {
       return (
         <div>
-          <Form1/>
+          <Form1 getNextForm={this.getNextForm.bind(this)} />
         </div>
       )
     }
