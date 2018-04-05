@@ -1,4 +1,5 @@
-const db = require('./database.js');
+const {db, Purchase} = require('./database.js');
+
 
 const savePurchase = (data) => {
   const purchase = new Purchase(data);

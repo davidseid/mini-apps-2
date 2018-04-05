@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
-const savePurchase = require('./db/controllers.js');
+const {savePurchase} = require('./db/controllers.js');
+const {db, Purchase} = require('./db/database.js');
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
@@ -14,6 +15,7 @@ app.use((req, res, next) => {
 
 app.post('/purchases', (req, res) => {
   console.log('request received', req.body);
+  savePurchase(req.body);
   res.send('successfully saved data');
 });
 
