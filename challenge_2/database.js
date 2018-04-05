@@ -27,3 +27,5 @@ const purchaseSchema = mongoose.Schema({
     billzip: String
   }
 })
+
+const Purchase = mongoose.model('Purchase', purchaseSchema);
