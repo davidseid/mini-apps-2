@@ -1,6 +1,6 @@
 module.exports = {
   entry: [
-    './client/app.jsx'
+    './client/index.js'
   ],
   module: {
     rules: [
