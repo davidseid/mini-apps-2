@@ -12,7 +12,9 @@ class App extends React.Component {
     super(props)
     this.state = {
       checkoutStage: 0,
-      purchaseInfo: {}
+      purchaseInfo: {
+        purchaseID: 0
+      },
     }
   }
 
@@ -28,16 +30,23 @@ class App extends React.Component {
     this.savePurchase(this.state.purchaseInfo);
 
     let nextStage;
+    let nextPurchaseNumber;
     
     if (this.state.checkoutStage === 4) {
-      nextStage = 0;
+      nextPurchaseNumber = this.state.purchaseInfo.purchaseID + 1;
+      this.setState({
+        checkoutStage: 0,
+        purchaseInfo: {
+          purchaseID: nextPurchaseNumber
+        }
+      })
     } else {
       nextStage = this.state.checkoutStage + 1;
+      nextPurchaseNumber = this.state.purchaseInfo.purchaseID;
+      this.setState({
+        checkoutStage: nextStage,
+      })
     }
-
-    this.setState({
-      checkoutStage: nextStage
-    })
   }
 
   savePurchase(data) {

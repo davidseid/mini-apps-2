@@ -8,6 +8,7 @@ db.once('open', function() {
 });
 
 const purchaseSchema = mongoose.Schema({
+  purchaseId: Number,
   name: String,
   email: String,
   password: String,
