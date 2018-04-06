@@ -26,8 +26,16 @@ class App extends React.Component {
   changeForm() {
     this.savePurchase(this.state.purchaseInfo);
 
+    let nextStage;
+    
+    if (this.state.checkoutStage === 3) {
+      nextStage = 0;
+    } else {
+      nextStage = this.state.checkoutStage + 1;
+    }
+
     this.setState({
-      checkoutStage: this.state.checkoutStage + 1
+      checkoutStage: nextStage
     })
   }
 
