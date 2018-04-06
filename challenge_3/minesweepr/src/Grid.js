@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import Row from './Row.js';
 
-const Grid = ({size}) => {
+const Grid = ({size, revealSquare}) => {
   
   let rows = [];
   for (let i = 0; i < size; i++) {
-    rows.push(<Row size={size} rowNum={i} />);
+    rows.push(<Row size={size} rowNum={i} revealSquare={revealSquare} />);
   }
-
-  console.log(rows);
 
   return (
     <div className="Grid">

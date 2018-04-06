@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-const Square = (props) => {
+const Square = ({rowNum, colNum, revealSquare}) => {
   return (
-    <div className="Square">
+    <div className="Square" onClick={() => {revealSquare(rowNum, colNum)}}>
     </div>
   )
 }

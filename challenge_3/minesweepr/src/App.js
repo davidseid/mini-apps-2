@@ -20,7 +20,9 @@ class App extends Component {
     }
   }
 
-
+  revealSquare(rowNum, colNum) {
+    console.log(rowNum, colNum);
+  }
 
   render() {
     return (
@@ -30,7 +32,11 @@ class App extends Component {
           <h1 className="App-title">Minesweeper</h1>
         </header>
         <div className="App-intro">
-          <Grid size={10} numMines={10} mineCoordinates={this.state.mineCoordinates}/>
+          <Grid size={10} 
+                numMines={10} 
+                mineCoordinates={this.state.mineCoordinates}
+                revealSquare={this.revealSquare.bind(this)}
+          />
         </div>
       </div>
     );
