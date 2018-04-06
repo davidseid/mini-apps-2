@@ -11,7 +11,11 @@ class App extends Component {
     for (let i = 0; i < 10; i++) {
       let row = [];
       for (let j = 0; j < 10; j++) {
-        row.push('hidden');
+        row.push({
+          isHidden: true,
+          isBomb: false,
+          nearbyBombs: 0
+        });
       }
       grid.push(row);
     }
@@ -27,52 +31,76 @@ class App extends Component {
       let bomb = mineCoordinates[i];
       let bombx = bomb[0];
       let bomby = bomb[1];
-      grid[bombx][bomby] = 'bomb';
+      grid[bombx][bomby].isBomb = true;
     }
+
+    // 
 
 
     this.state = {
       numMines: 10,
       mineCoordinates: mineCoordinates,
-      grid: grid
+      grid: grid,
+      gameState: 'play'
     }
   }
 
   revealSquare(row, col) {
-    // if square is not bomb
-    // render component as white
-    // if square is bomb 
-      // console.log(bomb)
-    if (this.state.grid[row][col] === 'hidden') {
+    if (this.state.grid[row][col].isHidden) {
       let newGrid = this.state.grid;
-      newGrid[row][col] = 'safe';
+      newGrid[row][col].isHidden = false;
       this.setState({
         grid: newGrid
       })
     }
     
-    if (this.state.grid[row][col] === 'bomb') {
-      console.log('bomb!!!!');
+    if (this.state.grid[row][col].isBomb) {
+      console.log('bomb!!!!')
+      this.setState({
+        gameState: 'lose'
+      })
     }
   }
 
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Minesweeper</h1>
-        </header>
-        <div className="App-intro">
-          <Grid size={10} 
-                grid={this.state.grid}
-                numMines={10} 
-                mineCoordinates={this.state.mineCoordinates}
-                revealSquare={this.revealSquare.bind(this)}
-          />
+    if (this.state.gameState === 'play') {
+      return (
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1 className="App-title">Minesweeper</h1>
+          </header>
+          <div className="App-intro">
+            <Grid size={10} 
+                  grid={this.state.grid}
+                  numMines={10} 
+                  mineCoordinates={this.state.mineCoordinates}
+                  revealSquare={this.revealSquare.bind(this)}
+            />
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else if (this.state.gameState === 'lose') {
+      return (
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1 className="App-title">Minesweeper</h1>
+          </header>
+          <div className="App-intro">
+            <Grid size={10} 
+                  grid={this.state.grid}
+                  numMines={10} 
+                  mineCoordinates={this.state.mineCoordinates}
+                  revealSquare={this.revealSquare.bind(this)}
+            />
+          </div>
+          <div>
+            GAME OVER
+          </div>
+        </div>
+      );
+    }
   }
 }
 

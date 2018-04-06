@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-const Square = ({state, rowNum, colNum, revealSquare}) => {
-  if (state === 'hidden' || state === 'bomb') {
+const Square = ({isHidden, isBomb, nearbyBombs, rowNum, colNum, revealSquare}) => {
+  if (isHidden || isBomb) {
     return (
       <div className="hidden-square" onClick={() => {revealSquare(rowNum, colNum)}}>
       </div>
     )
-  } else if (state === 'safe') {
+  } else if (!isBomb) {
     return (
       <div className="safe-square">
       </div>
