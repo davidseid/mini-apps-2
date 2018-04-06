@@ -7,6 +7,15 @@ class App extends Component {
   constructor(props) {
     super(props)
 
+    const grid = []
+    for (let i = 0; i < 10; i++) {
+      let row = [];
+      for (let j = 0; j < 10; j++) {
+        row.push('safe');
+      }
+      grid.push(row);
+    }
+
     const mineCoordinates = [];
     
     // refactor to make sure there are no duplicate mines
@@ -14,14 +23,23 @@ class App extends Component {
       mineCoordinates.push([Math.floor(Math.random() * 9), Math.floor(Math.random() * 9)]);
     }
 
+    for (let i = 0; i < mineCoordinates.length; i++) {
+      let bomb = mineCoordinates[i];
+      let bombx = bomb[0];
+      let bomby = bomb[1];
+      grid[bombx][bomby] = 'bomb';
+    }
+
+
     this.state = {
       numMines: 10,
-      mineCoordinates: mineCoordinates 
+      mineCoordinates: mineCoordinates,
+      grid: grid
     }
   }
 
   revealSquare(rowNum, colNum) {
-    console.log(rowNum, colNum);
+    
   }
 
   render() {
