@@ -18,6 +18,9 @@ class App extends React.Component {
     }
   }
 
+  //each time checkout is clicked it creates a new record
+  //each time next is clicked it updates that record
+
   updatePurchaseInfo(key, value) {
     const updatedPurchaseInfo = this.state.purchaseInfo;
     updatedPurchaseInfo[key] = value;
@@ -25,6 +28,11 @@ class App extends React.Component {
       purchaseInfo: updatedPurchaseInfo
     })
   }
+
+  // createPurchase() {
+  //   // this function should be invoked when checkout is clicked
+  //   // it should create a record in the database with a purchase ID
+  // }
 
   changeForm() {
     this.savePurchase(this.state.purchaseInfo);
@@ -48,6 +56,11 @@ class App extends React.Component {
       })
     }
   }
+
+  // updatePurchaseInfo(id) {
+  //   // this function should replace save purchase
+  //   // it should take the current purchaseID 
+  // }
 
   savePurchase(data) {
     axios.post('/purchases', data)
