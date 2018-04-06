@@ -104,7 +104,7 @@ class App extends React.Component {
     if (this.state.checkoutStage === 4) {
       return (
         <div>
-          <Confirmation changeForm={this.changeForm.bind(this)} />
+          <Confirmation changeForm={this.changeForm.bind(this)} purchaseInfo={this.state.purchaseInfo}/>
         </div>
       )
     }
