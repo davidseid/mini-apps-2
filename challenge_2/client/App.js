@@ -5,6 +5,7 @@ import Home from './Home.js';
 import Form1 from './Form1.js';
 import Form2 from './Form2.js';
 import Form3 from './Form3.js';
+import Confirmation from './Confirmation.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class App extends React.Component {
 
     let nextStage;
     
-    if (this.state.checkoutStage === 3) {
+    if (this.state.checkoutStage === 4) {
       nextStage = 0;
     } else {
       nextStage = this.state.checkoutStage + 1;
@@ -75,6 +76,13 @@ class App extends React.Component {
       return (
         <div>
           <Form3 changeForm={this.changeForm.bind(this)} updatePurchaseInfo={this.updatePurchaseInfo.bind(this)} />
+        </div>
+      )
+    }
+    if (this.state.checkoutStage === 4) {
+      return (
+        <div>
+          <Confirmation changeForm={this.changeForm.bind(this)} />
         </div>
       )
     }
