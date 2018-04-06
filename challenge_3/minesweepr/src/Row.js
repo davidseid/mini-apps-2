@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import Square from './Square.js';
 
-const Row = (props) => {
+const Row = ({size}) => {
+  let squares = [];
+  for (let i = 0; i < size; i++) {
+    squares.push(<Square colNum={i} />)
+  }
+
   return (
     <div className="Row">
-      Row
-      <Square />
+      {squares}
     </div>
   )
 }
