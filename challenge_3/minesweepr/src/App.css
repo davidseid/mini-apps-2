@@ -27,13 +27,31 @@
   to { transform: rotate(360deg); }
 }
 
-.Square {
+.hidden-square {
   display: flex;
   flex-direction: row;
   border: 1px solid black;
   height: 40px;
   width: 40px;
   background-color:lightgrey;
+}
+
+.safe-square {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  height: 40px;
+  width: 40px;
+  background-color:white;
+}
+
+.bomb-square {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  height: 40px;
+  width: 40px;
+  background-color:red;
 }
 
 .Row {

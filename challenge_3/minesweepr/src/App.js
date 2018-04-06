@@ -11,7 +11,7 @@ class App extends Component {
     for (let i = 0; i < 10; i++) {
       let row = [];
       for (let j = 0; j < 10; j++) {
-        row.push('safe');
+        row.push('hidden');
       }
       grid.push(row);
     }
@@ -38,8 +38,22 @@ class App extends Component {
     }
   }
 
-  revealSquare(rowNum, colNum) {
+  revealSquare(row, col) {
+    // if square is not bomb
+    // render component as white
+    // if square is bomb 
+      // console.log(bomb)
+    if (this.state.grid[row][col] === 'hidden') {
+      let newGrid = this.state.grid;
+      newGrid[row][col] = 'safe';
+      this.setState({
+        grid: newGrid
+      })
+    }
     
+    if (this.state.grid[row][col] === 'bomb') {
+      console.log('bomb!!!!');
+    }
   }
 
   render() {
@@ -51,6 +65,7 @@ class App extends Component {
         </header>
         <div className="App-intro">
           <Grid size={10} 
+                grid={this.state.grid}
                 numMines={10} 
                 mineCoordinates={this.state.mineCoordinates}
                 revealSquare={this.revealSquare.bind(this)}
