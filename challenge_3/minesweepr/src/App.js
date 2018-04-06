@@ -34,7 +34,26 @@ class App extends Component {
       grid[bombx][bomby].isBomb = true;
     }
 
-    // 
+    // make logic to add nearby bombs values
+    // for each coord in mineCoordinates
+      // increment the spaces that are adjacent by one
+    
+    for (let i = 0; i < mineCoordinates.length; i++) {
+      let bombLocation = mineCoordinates[i];
+      let bombx = bombLocation[0];
+      let bomby = bombLocation[1];
+      for (let j = -1; j <= 1; j++) {
+        for (let k = -1; k <= 1; k++) {
+          if (grid[bombx + j]) {
+            if (grid[bombx + j][bomby + k]) {
+              if (grid[bombx + j][bomby + k].isBomb === false) {
+                grid[bombx + j][bomby + k].nearbyBombs++;
+              }
+            }
+          }
+        }
+      }
+    }
 
 
     this.state = {

@@ -9,6 +9,7 @@ const Square = ({isHidden, isBomb, nearbyBombs, rowNum, colNum, revealSquare}) =
   } else if (!isBomb) {
     return (
       <div className="safe-square">
+        {nearbyBombs}
       </div>
     )
   } 
