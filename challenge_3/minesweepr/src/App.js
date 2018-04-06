@@ -7,7 +7,17 @@ class App extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {}
+    const mineCoordinates = [];
+    
+    // refactor to make sure there are no duplicate mines
+    for (let i = 0; i < 10; i++) {
+      mineCoordinates.push([Math.floor(Math.random() * 9), Math.floor(Math.random() * 9)]);
+    }
+
+    this.state = {
+      numMines: 10,
+      mineCoordinates: mineCoordinates 
+    }
   }
 
 
@@ -20,7 +30,7 @@ class App extends Component {
           <h1 className="App-title">Minesweeper</h1>
         </header>
         <div className="App-intro">
-          <Grid size={10}/>
+          <Grid size={10} numMines={10} mineCoordinates={this.state.mineCoordinates}/>
         </div>
       </div>
     );
