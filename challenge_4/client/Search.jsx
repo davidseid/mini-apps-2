@@ -12,7 +12,7 @@ class Search extends React.Component {
 
     this.state = {
       historicalData: [],
-      currentPage: 0
+      currentPage: 1
     }
   }
 
@@ -24,29 +24,41 @@ class Search extends React.Component {
 
   handlePageClick = (data) => {
     let selected = data.selected;
-    console.log(selected);
-    this.setState({currentPage: selected}, () => {
+    console.log(selected + 1);
+    this.setState({currentPage: selected + 1}, () => {
       this.searchHistory(this.state.keywords);
     })
   };
 
   searchHistory(keywords) {
     console.log('search history by keyword: ', keywords);
-    const url = `/events?q=${keywords}&_page=${this.state.currentPage}&_limit=5`;
-    // const url = `/events?_page=7&limit=10`;
+
+    let numPagesUrl = `/events?q=${keywords}`;
     $.ajax({
-      url      : url,
-      dataType : 'json',
-      type     : 'GET',
+      url: numPagesUrl,
+      dataType: 'json',
+      type: 'GET',
 
       success: data => {
-        this.setState({historicalData: data, pageCount: 10});
-      },
+        this.setState({pageCount: data.length / 10});
+        const url = `/events?q=${keywords}&_page=${this.state.currentPage}&_limit=10`;
+        $.ajax({
+          url      : url,
+          dataType : 'json',
+          type     : 'GET',
 
-      error: (err) => {
-        console.error(err);
+          success: data => {
+            this.setState({historicalData: data});
+          },
+
+          error: (err) => {
+            console.error(err);
+          }
+        });
       }
-    });
+    })
+
+    
 
   }
 
