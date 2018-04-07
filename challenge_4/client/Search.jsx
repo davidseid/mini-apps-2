@@ -3,20 +3,22 @@ import axios from 'axios';
 import $ from 'jquery';
 import ReactPaginate from 'react-paginate';
 
+import Facts from './Facts.jsx';
+
 
 class Search extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      keywords: null
+      keywords: null,
+      historicalData: []
     }
   }
 
   getKeywords(input) {
     this.setState({
-      keywords: input,
-      historicalData: null
+      keywords: input
     })
   }
 
@@ -46,6 +48,7 @@ class Search extends React.Component {
         Welcome to History Finder<br/>
         <input onChange={(e) => {this.getKeywords(e.target.value)}} placeholder="Search for history by keyword"></input>
         <button onClick={() => this.searchHistory(this.state.keywords)}>Search</button>
+        <Facts data={this.state.historicalData} />
         <ReactPaginate previousLabel={"previous"}
                       nextLabel={"next"}
                       breakLabel={<a href="">...</a>}
