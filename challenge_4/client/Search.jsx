@@ -66,8 +66,9 @@ class Search extends React.Component {
     return (
       <div>
         Welcome to History Finder<br/>
-        <input onChange={(e) => {this.getKeywords(e.target.value)}} placeholder="Search for history by keyword"></input>
-        <button onClick={() => this.searchHistory(this.state.keywords)}>Search</button>
+        <input onChange={(e) => {this.getKeywords(e.target.value)}} 
+              placeholder="Search for history by keyword"
+              onKeyPress={(e) => { if (e.key === 'Enter') this.searchHistory(this.state.keywords)}}></input>
         <Facts data={this.state.historicalData} />
         <ReactPaginate previousLabel={"previous"}
                       nextLabel={"next"}
