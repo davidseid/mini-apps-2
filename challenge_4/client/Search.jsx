@@ -11,10 +11,7 @@ class Search extends React.Component {
     super(props)
 
     this.state = {
-      keywords: null,
-      offset: 0,
       historicalData: [],
-      pageCount: 10,
       currentPage: 0
     }
   }
