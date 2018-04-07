@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Search from './Search.jsx';
 
 ReactDOM.render(
-  <div>{History}</div>,
+  <Search />,
   document.getElementById('app')
 );
 
