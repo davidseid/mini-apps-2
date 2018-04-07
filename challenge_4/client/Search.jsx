@@ -1,5 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import $ from 'jquery';
+import ReactPaginate from 'react-paginate';
+
 
 class Search extends React.Component {
   constructor(props) {
@@ -20,10 +23,21 @@ class Search extends React.Component {
   searchHistory(keywords) {
     console.log('search history by keyword: ', keywords);
     const url = `/events?q=${keywords}`;
-    axios.get(url)
-      .then((res) => this.setState({
-        historicalData: res.data
-      }));
+    $.ajax({
+      url      : url,
+      data     : {limit: 10, offset: 0},
+      dataType : 'json',
+      type     : 'GET',
+
+      success: data => {
+        this.setState({historicalData: data, pageCount: 10});
+      },
+
+      error: (err) => {
+        console.error(err);
+      }
+    });
+
   }
 
   render() {
@@ -32,6 +46,17 @@ class Search extends React.Component {
         Welcome to History Finder<br/>
         <input onChange={(e) => {this.getKeywords(e.target.value)}} placeholder="Search for history by keyword"></input>
         <button onClick={() => this.searchHistory(this.state.keywords)}>Search</button>
+        <ReactPaginate previousLabel={"previous"}
+                      nextLabel={"next"}
+                      breakLabel={<a href="">...</a>}
+                      breakClassName={"break-me"}
+                      pageCount={this.state.pageCount}
+                      marginPagesDisplayed={2}
+                      pageRangeDisplayed={5}
+                      onPageChange={this.handlePageClick}
+                      containerClassName={"pagination"}
+                      subContainerClassName={"pages pagination"}
+                      activeClassName={"active"} />
       </div>
     )
   }
