@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class Search extends React.Component {
   constructor(props) {
@@ -17,6 +18,10 @@ class Search extends React.Component {
 
   searchHistory(keywords) {
     console.log('search history by keyword: ', keywords);
+    // make axios call to the route with the keyword
+    const url = `/events?q=${keywords}`;
+    axios.get(url)
+      .then((res) => console.log(res.data));
   }
 
   render() {
