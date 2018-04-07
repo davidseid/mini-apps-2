@@ -12,16 +12,18 @@ class Search extends React.Component {
 
   getKeywords(input) {
     this.setState({
-      keywords: input
+      keywords: input,
+      historicalData: null
     })
   }
 
   searchHistory(keywords) {
     console.log('search history by keyword: ', keywords);
-    // make axios call to the route with the keyword
     const url = `/events?q=${keywords}`;
     axios.get(url)
-      .then((res) => console.log(res.data));
+      .then((res) => this.setState({
+        historicalData: res.data
+      }));
   }
 
   render() {
